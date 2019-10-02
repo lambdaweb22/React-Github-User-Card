@@ -11,7 +11,7 @@ class UserCard extends React.Component {
         const user = this.props.user;
         const followers = this.props.followers;
         return(
-            <>
+            <div className="user-card">
                 <img width='200px' src={user.avatar_url} alt="user avatar" />
                 <h2>{user.login}</h2>
                 <p>Name: {user.name}</p>
@@ -20,7 +20,7 @@ class UserCard extends React.Component {
                 {followers.map(follower => (
                     <div key={follower.id}>{follower.login}</div>
                 ))}
-            </>
+            </div>
         )
     }
 }
