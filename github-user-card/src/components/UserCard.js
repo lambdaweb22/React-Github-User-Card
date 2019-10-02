@@ -8,12 +8,18 @@ class UserCard extends React.Component {
 
     render() {
         console.log(this.props.user);
+        const user = this.props.user;
+        const followers = this.props.followers;
         return(
             <>
-                <img width='200px' src={this.props.user.avatar_url} alt="user avatar" />
-                <h2>{this.props.user.login}</h2>
-                <p>Name: {this.props.user.name}</p>
-                <p>Bio: {this.props.user.bio ? this.props.user.bio : 'None'}</p>
+                <img width='200px' src={user.avatar_url} alt="user avatar" />
+                <h2>{user.login}</h2>
+                <p>Name: {user.name}</p>
+                <p>Bio: {user.bio ? user.bio : 'None'}</p>
+                <p>Followers: {user.followers}</p>
+                {followers.map(follower => (
+                    <div key={follower.id}>{follower.login}</div>
+                ))}
             </>
         )
     }

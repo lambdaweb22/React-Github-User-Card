@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: ''
+      user: '',
+      followers: []
     }
   }
 
@@ -24,13 +25,24 @@ class App extends React.Component {
       .catch(err => {
         console.error('error', err);
       })
+    axios
+      .get('https://api.github.com/users/kastair/followers')
+      .then(res => {
+        this.setState({
+          followers: res.data
+        })
+        console.log(this.state.followers);
+      })
+      .catch(err => {
+        console.error('error', err);
+      })
   }
 
   render() {
     return (
       <div className="App">
         <h1>Github User Card</h1>
-        <UserCard user={this.state.user}/>
+        <UserCard user={this.state.user} followers={this.state.followers}/>
       </div>
     );
   }
